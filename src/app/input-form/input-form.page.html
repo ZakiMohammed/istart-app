@@ -13,6 +13,18 @@
     <div class="ion-padding">
         <form novalidate [formGroup]="frm" (ngSubmit)="onSubmit($event)">
 
+            <!-- mobile -->
+            <ion-item>
+                <ion-label>Mobile:</ion-label>
+                <ion-input type="text" inputmode="numeric" maxlength="10" placeholder="Enter 10 digits mobile number"
+                    formControlName="mobile" (click)="f.mobile.markAsTouched()">
+                </ion-input>
+            </ion-item>
+            <div class="invalid-feedback" *ngIf="(f.mobile.touched || f.mobile.dirty) && !f.mobile.valid">
+                <ion-text *ngIf="f.mobile.errors?.required">This field is required</ion-text>
+                <ion-text *ngIf="f.mobile.errors?.pattern">Mobile number is invalid</ion-text>
+            </div>
+
             <!-- full name -->
             <ion-item>
                 <ion-label>Full Name:</ion-label>
@@ -50,7 +62,8 @@
             <!-- meet name -->
             <ion-item>
                 <ion-label>Meet Name:</ion-label>
-                <ion-input placeholder="Enter meet name" formControlName="meetName" (click)="f.meetName.markAsTouched()">
+                <ion-input placeholder="Enter meet name" formControlName="meetName"
+                    (click)="f.meetName.markAsTouched()">
                 </ion-input>
             </ion-item>
             <div class="invalid-feedback" *ngIf="(f.meetName.touched || f.meetName.dirty) && !f.meetName.valid">
@@ -58,6 +71,44 @@
                 <ion-text *ngIf="f.meetName.errors?.minlength">At least 3 characters are required</ion-text>
             </div>
 
+            <!-- meet flat -->
+            <ion-item>
+                <ion-label>Flat:</ion-label>
+                <ion-input placeholder="Enter flat" formControlName="flat" (click)="f.flat.markAsTouched()">
+                </ion-input>
+            </ion-item>
+            <div class="invalid-feedback" *ngIf="(f.flat.touched || f.flat.dirty) && !f.flat.valid">
+                <ion-text *ngIf="f.flat.errors?.required">This field is required</ion-text>
+            </div>
+
+            <!-- otp -->
+            <ion-item>
+                <ion-label>OTP:</ion-label>
+                <ion-input type="text" inputmode="numeric" maxlength="4" placeholder="Enter OTP" formControlName="otp"
+                    (click)="f.otp.markAsTouched()"></ion-input>
+            </ion-item>
+            <div class="invalid-feedback" *ngIf="(f.otp.touched || f.otp.dirty) && !f.otp.valid">
+                <ion-text *ngIf="f.otp.errors?.required">This field is required</ion-text>
+                <ion-text *ngIf="f.otp.errors?.minlength">4 digits are required</ion-text>
+                <ion-text *ngIf="f.otp.errors?.pattern">Number is invalid</ion-text>
+            </div>
+
+            <hr>
+
+            <ion-grid no-padding>
+                <ion-row>
+                    <ion-col size="6">
+                        <ion-button expand="block" href="tel:{{mobile}}" color="success" [disabled]="f.mobile.invalid">
+                            <ion-icon slot="start" name="star"></ion-icon>
+                            Call
+                        </ion-button>
+                    </ion-col>
+                    <ion-col size="6">
+                        <ion-button expand="block" type="submit">Submit</ion-button>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
         </form>
     </div>
+
 </ion-content>

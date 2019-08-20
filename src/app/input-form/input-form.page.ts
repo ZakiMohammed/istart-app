@@ -20,10 +20,13 @@ export class InputFormPage implements OnInit {
 
     ngOnInit() {
         this.frm = this.builder.group({
+            mobile: ['', [Validators.required, Validators.pattern(/^[6-9]\d{9}$/)]],
             name: ['', [Validators.required, Validators.minLength(3)]],
             count: ['', [Validators.required, Validators.min(1)]],
             purpose: ['', [Validators.required, Validators.minLength(3)]],
             meetName: ['', [Validators.required, Validators.minLength(3)]],
+            flat: ['', [Validators.required]],
+            otp: ['', [Validators.required, Validators.minLength(4), Validators.pattern(/^[0-9]*$/)]],
         });
     }
 
