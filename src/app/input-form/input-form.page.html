@@ -1,0 +1,63 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>
+            Input Form
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div class="ion-padding">
+        <form novalidate [formGroup]="frm" (ngSubmit)="onSubmit($event)">
+
+            <!-- full name -->
+            <ion-item>
+                <ion-label>Full Name:</ion-label>
+                <ion-input placeholder="Enter full name" formControlName="name" (click)="f.name.markAsTouched()"
+                    maxlength="20">
+                </ion-input>
+            </ion-item>
+            <div class="invalid-feedback" *ngIf="(f.name.touched || f.name.dirty) && !f.name.valid">
+                <ion-text *ngIf="f.name.errors?.required">This field is required</ion-text>
+                <ion-text *ngIf="f.name.errors?.minlength">At least 3 characters are required</ion-text>
+            </div>
+
+            <!-- count -->
+            <ion-item>
+                <ion-label>Count:</ion-label>
+                <ion-input type="number" value="0" placeholder="Enter count" formControlName="count"
+                    (click)="f.count.markAsTouched()"></ion-input>
+            </ion-item>
+            <div class="invalid-feedback" *ngIf="(f.count.touched || f.count.dirty) && !f.count.valid">
+                <ion-text *ngIf="f.count.errors?.required">This field is required</ion-text>
+                <ion-text *ngIf="f.count.errors?.min">At least 1 count is required</ion-text>
+            </div>
+
+            <!-- purpose -->
+            <ion-item>
+                <ion-label>Purpose:</ion-label>
+                <ion-input placeholder="Enter purpose" formControlName="purpose" (click)="f.purpose.markAsTouched()">
+                </ion-input>
+            </ion-item>
+            <div class="invalid-feedback" *ngIf="(f.purpose.touched || f.purpose.dirty) && !f.purpose.valid">
+                <ion-text *ngIf="f.purpose.errors?.required">This field is required</ion-text>
+                <ion-text *ngIf="f.purpose.errors?.minlength">At least 3 characters are required</ion-text>
+            </div>
+
+            <!-- meet name -->
+            <ion-item>
+                <ion-label>Meet Name:</ion-label>
+                <ion-input placeholder="Enter meet name" formControlName="meetName" (click)="f.meetName.markAsTouched()">
+                </ion-input>
+            </ion-item>
+            <div class="invalid-feedback" *ngIf="(f.meetName.touched || f.meetName.dirty) && !f.meetName.valid">
+                <ion-text *ngIf="f.meetName.errors?.required">This field is required</ion-text>
+                <ion-text *ngIf="f.meetName.errors?.minlength">At least 3 characters are required</ion-text>
+            </div>
+
+        </form>
+    </div>
+</ion-content>

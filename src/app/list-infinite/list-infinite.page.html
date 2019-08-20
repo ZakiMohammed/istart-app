@@ -4,15 +4,13 @@
             <ion-menu-button></ion-menu-button>
         </ion-buttons>
         <ion-title>
-            List
+            List Infinite
         </ion-title>
     </ion-toolbar>
 </ion-header>
 
 <ion-content>
-    <div [hidden]="users.length" class="ion-padding ion-text-center">
-        <ion-spinner></ion-spinner>
-    </div>
+
     <ion-card *ngFor="let user of users">
         <ion-item button (click)="onUserClick($event, user)">
             <ion-avatar slot="start">
@@ -24,4 +22,10 @@
             </ion-label>
         </ion-item>
     </ion-card>
+
+    <ion-infinite-scroll (ionInfinite)="loadData($event)">
+        <ion-infinite-scroll-content loadingSpinner="crescent" loadingText="Loading more data...">
+        </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+
 </ion-content>

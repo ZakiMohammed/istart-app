@@ -14,7 +14,9 @@ const routes: Routes = [
   {
     path: 'list',
     loadChildren: () => import('./list/list.module').then(m => m.ListPageModule)
-  }
+  },
+  { path: 'list-infinite', loadChildren: './list-infinite/list-infinite.module#ListInfinitePageModule' },
+  { path: 'input-form', loadChildren: './input-form/input-form.module#InputFormPageModule' },
 ];
 
 @NgModule({
